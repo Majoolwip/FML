@@ -2,7 +2,7 @@ use crate::Mat4;
 use crate::Real;
 
 #[test]
-fn test_identity() {
+fn identity() {
     let m = Mat4::identity();
     let expected = Mat4 {
         m: [
@@ -13,7 +13,7 @@ fn test_identity() {
 }
 
 #[test]
-fn test_translation() {
+fn translation() {
     let m = Mat4::translation(1.0, 2.0, 3.0);
     let expected = Mat4 {
         m: [
@@ -24,7 +24,7 @@ fn test_translation() {
 }
 
 #[test]
-fn test_scale() {
+fn scale() {
     let m = Mat4::scale(2.0, 3.0, 4.0);
     let expected = Mat4 {
         m: [
@@ -35,22 +35,22 @@ fn test_scale() {
 }
 
 #[test]
-fn test_rotation() {
-    let m = Mat4::rotation(0.0, std::f32::consts::FRAC_PI_2 as Real, 0.0);
+fn rotation() {
+    let m = Mat4::rotation(0.0, crate::REAL_FRAC_PI_2, 0.0);
     let expected = Mat4 {
         m: [
             0.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
         ],
     };
     assert_eq!(m, expected);
-    let m = Mat4::rotation(std::f32::consts::FRAC_PI_2 as Real, 0.0, 0.0);
+    let m = Mat4::rotation(crate::REAL_FRAC_PI_2 as Real, 0.0, 0.0);
     let expected = Mat4 {
         m: [
             1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
         ],
     };
     assert_eq!(m, expected);
-    let m = Mat4::rotation(0.0, 0.0, std::f32::consts::FRAC_PI_2 as Real);
+    let m = Mat4::rotation(0.0, 0.0, crate::REAL_FRAC_PI_2);
     let expected = Mat4 {
         m: [
             0.0, 1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0,
@@ -60,7 +60,7 @@ fn test_rotation() {
 }
 
 #[test]
-fn test_perspective() {
+fn perspective() {
     let m = Mat4::perspective(45.0, 1280.0, 720.0, 0.1, 1000.0);
     let expected = Mat4 {
         m: [
