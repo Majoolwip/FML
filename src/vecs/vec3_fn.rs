@@ -17,17 +17,17 @@ impl Vec3 {
     }
 
     #[inline(always)]
-    pub fn len_sqrd(self) -> Real {
+    pub fn len_sqrd(&self) -> Real {
         self.x * self.x + self.y * self.y + self.z * self.z
     }
 
     #[inline(always)]
-    pub fn len(self) -> Real {
+    pub fn len(&self) -> Real {
         self.len_sqrd().sqrt()
     }
 
     #[inline(always)]
-    pub fn normalized(self) -> Vec3 {
+    pub fn normalized(&self) -> Vec3 {
         let len = self.len();
         Vec3 {
             x: self.x / len,
@@ -37,12 +37,12 @@ impl Vec3 {
     }
 
     #[inline(always)]
-    pub fn dot(self, other: Vec3) -> Real {
+    pub fn dot(&self, other: &Vec3) -> Real {
         self.x * other.x + self.y * other.y + self.z * other.z
     }
 
     #[inline(always)]
-    pub fn cross(self, other: Vec3) -> Vec3 {
+    pub fn cross(&self, other: &Vec3) -> Vec3 {
         Vec3 {
             x: self.y * other.z - self.z * other.y,
             y: self.z * other.x - self.x * other.z,
@@ -51,7 +51,7 @@ impl Vec3 {
     }
 
     #[inline(always)]
-    pub fn reflect(self, normal: Vec3) -> Vec3 {
+    pub fn reflect(&self, normal: &Vec3) -> Vec3 {
         let twice_dot = 2.0 * self.dot(normal);
         Vec3 {
             x: self.x - twice_dot * normal.x,
@@ -61,7 +61,7 @@ impl Vec3 {
     }
 
     #[inline(always)]
-    pub fn lerp(self, target: Vec3, percentage: Real) -> Vec3 {
+    pub fn lerp(&self, target: &Vec3, percentage: Real) -> Vec3 {
         Vec3 {
             x: self.x + percentage * (target.x - self.x),
             y: self.y + percentage * (target.y - self.y),
@@ -70,12 +70,12 @@ impl Vec3 {
     }
 
     #[inline(always)]
-    pub fn nlerp(self, target: Vec3, percentage: Real) -> Vec3 {
+    pub fn nlerp(&self, target: &Vec3, percentage: Real) -> Vec3 {
         self.lerp(target, percentage).normalized()
     }
 
     #[inline(always)]
-    pub fn negate(self) -> Vec3 {
+    pub fn negate(&self) -> Vec3 {
         Vec3 {
             x: -self.x,
             y: -self.y,
@@ -84,7 +84,7 @@ impl Vec3 {
     }
 
     #[inline(always)]
-    pub fn inverse(self) -> Vec3 {
+    pub fn inverse(&self) -> Vec3 {
         Vec3 {
             x: 1.0 / self.x,
             y: 1.0 / self.y,
@@ -93,7 +93,7 @@ impl Vec3 {
     }
 
     #[inline(always)]
-    pub fn abs(self) -> Vec3 {
+    pub fn abs(&self) -> Vec3 {
         Vec3 {
             x: self.x.abs(),
             y: self.y.abs(),
@@ -102,7 +102,7 @@ impl Vec3 {
     }
 
     #[inline(always)]
-    pub fn clamp(self, min: Real, max: Real) -> Vec3 {
+    pub fn clamp(&self, min: Real, max: Real) -> Vec3 {
         Vec3 {
             x: self.x.min(max).max(min),
             y: self.y.min(max).max(min),
