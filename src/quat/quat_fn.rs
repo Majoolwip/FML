@@ -9,7 +9,7 @@ impl Quat {
     }
 
     #[inline(always)]
-    pub fn from_axis(axis: Vec3, radians: Real) -> Quat {
+    pub fn from_axis(axis: &Vec3, radians: Real) -> Quat {
         let half_sin = (radians / 2.0).sin();
         let half_cos = (radians / 2.0).cos();
         Quat {
@@ -21,12 +21,12 @@ impl Quat {
     }
 
     #[inline(always)]
-    pub fn len(self) -> Real {
+    pub fn len(&self) -> Real {
         (self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w).sqrt()
     }
 
     #[inline(always)]
-    pub fn normalized(self) -> Quat {
+    pub fn normalized(&self) -> Quat {
         let len = self.len();
         Quat {
             x: self.x / len,
@@ -37,7 +37,7 @@ impl Quat {
     }
 
     #[inline(always)]
-    pub fn conjugate(self) -> Quat {
+    pub fn conjugate(&self) -> Quat {
         Quat {
             x: -self.x,
             y: -self.y,
@@ -47,13 +47,13 @@ impl Quat {
     }
 
     #[inline(always)]
-    pub fn dot(self, other: Quat) -> Real {
+    pub fn dot(&self, other: &Quat) -> Real {
         self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w
     }
 
     #[inline]
-    pub fn nlerp(self, mut dest: Quat, percentage: Real) -> Quat {
-        if self.dot(dest) < 0.0 {
+    pub fn nlerp(&self, mut dest: Quat, percentage: Real) -> Quat {
+        if self.dot(&dest) < 0.0 {
             dest = Quat {
                 x: -dest.x,
                 y: -dest.y,
@@ -71,8 +71,8 @@ impl Quat {
     }
 
     #[inline]
-    pub fn slerp(self, mut dest: Quat, percentage: Real) -> Quat {
-        let mut dot = self.dot(dest);
+    pub fn slerp(&self, mut dest: Quat, percentage: Real) -> Quat {
+        let mut dot = self.dot(&dest);
         if dot < 0.0 {
             dot = -dot;
             dest = Quat {
@@ -103,7 +103,7 @@ impl Quat {
     }
 
     #[inline(always)]
-    pub fn get_forward(self) -> Vec3 {
+    pub fn get_forward(&self) -> Vec3 {
         Vec3 {
             x: 2.0 * self.x * self.z - 2.0 * self.y * self.w,
             y: 2.0 * self.y * self.z + 2.0 * self.x * self.w,
@@ -113,7 +113,7 @@ impl Quat {
     }
 
     #[inline(always)]
-    pub fn get_up(self) -> Vec3 {
+    pub fn get_up(&self) -> Vec3 {
         Vec3 {
             x: 2.0 * self.x * self.y + 2.0 * self.z * self.w,
             y: 1.0 - 2.0 * self.x * self.x - 2.0 * self.z * self.z,
@@ -122,7 +122,7 @@ impl Quat {
     }
 
     #[inline(always)]
-    pub fn get_right(self) -> Vec3 {
+    pub fn get_right(&self) -> Vec3 {
         Vec3 {
             x: 1.0 - 2.0 * self.y * self.y - 2.0 * self.z * self.z,
             y: 2.0 * self.x * self.y - 2.0 * self.z * self.w,
