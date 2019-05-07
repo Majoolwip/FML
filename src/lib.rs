@@ -4,10 +4,42 @@ extern crate cfg_if;
 cfg_if! {
     if #[cfg(feature="double")] {
         pub type Real = f64;
-        pub const EPSILON: Real = 0.00001;
+        pub const EPSILON: Real = 1e-8;
+        pub const REAL_PI: Real = std::f64::consts::PI;
+        pub const REAL_FRAC_PI_2: Real  = std::f64::consts::FRAC_PI_2;
+        pub const REAL_FRAC_PI_3: Real  = std::f64::consts::FRAC_PI_3;
+        pub const REAL_FRAC_PI_4: Real  = std::f64::consts::FRAC_PI_4;
+        pub const REAL_FRAC_PI_6: Real  = std::f64::consts::FRAC_PI_6;
+        pub const REAL_FRAC_PI_8: Real  = std::f64::consts::FRAC_PI_8;
+        pub const REAL_FRAC_1_PI: Real  = std::f64::consts::FRAC_1_PI;
+        pub const REAL_FRAC_2_PI: Real  = std::f64::consts::FRAC_2_PI;
+        pub const REAL_FRAC_2_SQRT_PI: Real  = std::f64::consts::FRAC_2_SQRT_PI;
+        pub const REAL_FRAC_SQRT_2: Real  = std::f64::consts::SQRT_2;
+        pub const REAL_FRAC_1_SQRT_2: Real  = std::f64::consts::FRAC_1_SQRT_2;
+        pub const REAL_E: Real  = std::f64::consts::E;
+        pub const REAL_LOG2_E: Real  = std::f64::consts::LOG2_E;
+        pub const REAL_LOG10_E: Real  = std::f64::consts::LOG10_E;
+        pub const REAL_LN_2: Real  = std::f64::consts::LN_2;
+        pub const REAL_LN_10: Real  = std::f64::consts::LN_10;
     } else {
         pub type Real = f32;
-        pub const EPSILON: Real = 0.001;
+        pub const EPSILON: Real = 1e-4;
+        pub const REAL_PI: Real = std::f32::consts::PI;
+        pub const REAL_FRAC_PI_2: Real  = std::f32::consts::FRAC_PI_2;
+        pub const REAL_FRAC_PI_3: Real  = std::f32::consts::FRAC_PI_3;
+        pub const REAL_FRAC_PI_4: Real  = std::f32::consts::FRAC_PI_4;
+        pub const REAL_FRAC_PI_6: Real  = std::f32::consts::FRAC_PI_6;
+        pub const REAL_FRAC_PI_8: Real  = std::f32::consts::FRAC_PI_8;
+        pub const REAL_FRAC_1_PI: Real  = std::f32::consts::FRAC_1_PI;
+        pub const REAL_FRAC_2_PI: Real  = std::f32::consts::FRAC_2_PI;
+        pub const REAL_FRAC_2_SQRT_PI: Real  = std::f32::consts::FRAC_2_SQRT_PI;
+        pub const REAL_FRAC_SQRT_2: Real  = std::f32::consts::SQRT_2;
+        pub const REAL_FRAC_1_SQRT_2: Real  = std::f32::consts::FRAC_1_SQRT_2;
+        pub const REAL_E: Real  = std::f32::consts::E;
+        pub const REAL_LOG2_E: Real  = std::f32::consts::LOG2_E;
+        pub const REAL_LOG10_E: Real  = std::f32::consts::LOG10_E;
+        pub const REAL_LN_2: Real  = std::f32::consts::LN_2;
+        pub const REAL_LN_10: Real  = std::f32::consts::LN_10;
     }
 }
 
