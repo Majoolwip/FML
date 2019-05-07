@@ -66,19 +66,19 @@ fn normalized() {
 fn dot() {
     let a = Vec3::new(2.0, 3.0, 4.0);
     let b = Vec3::new(-2.0, -3.0, -4.0);
-    assert_eq!(a.dot(a), a.len_sqrd());
-    assert_eq!(b.dot(b), b.len_sqrd());
-    assert_eq!(a.dot(b), 2.0 * -2.0 + 3.0 * -3.0 + 4.0 * -4.0);
-    assert_eq!(b.dot(a), 2.0 * -2.0 + 3.0 * -3.0 + 4.0 * -4.0);
+    assert_eq!(a.dot(&a), a.len_sqrd());
+    assert_eq!(b.dot(&b), b.len_sqrd());
+    assert_eq!(a.dot(&b), 2.0 * -2.0 + 3.0 * -3.0 + 4.0 * -4.0);
+    assert_eq!(b.dot(&a), 2.0 * -2.0 + 3.0 * -3.0 + 4.0 * -4.0);
     let c = Vec3::new(0.0, 0.0, 0.0);
-    assert_eq!(a.dot(c), 0.0);
-    assert_eq!(b.dot(c), 0.0);
-    assert_eq!(c.dot(a), 0.0);
-    assert_eq!(c.dot(b), 0.0);
+    assert_eq!(a.dot(&c), 0.0);
+    assert_eq!(b.dot(&c), 0.0);
+    assert_eq!(c.dot(&a), 0.0);
+    assert_eq!(c.dot(&b), 0.0);
     let d = Vec3::new(0.0 / 0.0, 0.0 / 0.0, 0.0 / 0.0);
-    assert!(a.dot(d).is_nan());
+    assert!(a.dot(&d).is_nan());
     let d = Vec3::new(1.0 / 0.0, 1.0 / 0.0, 1.0 / 0.0);
-    assert!(a.dot(d).is_infinite());
+    assert!(a.dot(&d).is_infinite());
 }
 
 #[test]
@@ -86,19 +86,19 @@ fn cross() {
     let x = Vec3::new(1.0, 0.0, 0.0);
     let y = Vec3::new(0.0, 1.0, 0.0);
     let z = Vec3::new(0.0, 0.0, 1.0);
-    assert_eq!(x.cross(y), z);
-    assert_eq!(z.cross(x), y);
-    assert_eq!(y.cross(z), x);
+    assert_eq!(x.cross(&y), z);
+    assert_eq!(z.cross(&x), y);
+    assert_eq!(y.cross(&z), x);
 }
 
 #[test]
 fn reflect() {
     let norm = Vec3::new(0.0, 1.0, 0.0);
     let dir = Vec3::new(1.0, -1.0, 0.0);
-    let reflect = dir.reflect(norm);
+    let reflect = dir.reflect(&norm);
     assert_eq!(reflect, Vec3::new(1.0, 1.0, 0.0));
     let norm = Vec3::new(0.0, 0.0, 0.0);
-    assert_eq!(dir.reflect(norm), dir);
+    assert_eq!(dir.reflect(&norm), dir);
 }
 
 #[test]
